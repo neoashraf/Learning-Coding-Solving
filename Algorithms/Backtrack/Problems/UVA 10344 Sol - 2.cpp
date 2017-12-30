@@ -43,6 +43,8 @@ bool taken[5];
 int input[5],permutation_[5],is23;
 /// + 0 - 1 *2
 
+/// as soon as we find a solution we break
+
 int make23(int k,int is23){
 
     int check = -1;

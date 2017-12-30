@@ -39,8 +39,9 @@ typedef double dd;
 #define     imax 2147483647
 #define     lmax 9223372036854775807LL
 
-/// finds path from the top left(0,0) to bottom right(n-1,n-1)
-/// so we move right and downward
+/// Problem statement : Given a grid (NxN) consisting of 1 or 0
+/// find path from the top left(0,0) to bottom right(n-1,n-1)
+/// we move right and downward and of-course through the cells that are 1
 
 int n,cnt,Map[10][10],sol[10][10];
 
@@ -53,6 +54,7 @@ int main() {
 
     while(~read(n)){
 
+        /// grid input
         nfr(i,0,n){
             nfr(j,0,n){
                 read(Map[i][j]);
@@ -62,7 +64,7 @@ int main() {
         mem(sol,0);                   /// sol clear
 
         /// prints the grid with possible paths
-        if(findApath(0,0)){           /// it is guaranteed that top left has 1
+        if(findApath(0,0)){           /// calls the path finding function
             pf("Paths :(%d in total)\n",cnt);
             nfr(i,0,n){
                 nfr(j,0,n){
@@ -80,6 +82,7 @@ int main() {
     return 0;
 }
 
+/// the validity of the position
 bool isPossilbe(int i,int j){
 
     if(i >= 0 && i< n && j >= 0 && j< n && Map[i][j] == 1)
@@ -89,9 +92,10 @@ bool isPossilbe(int i,int j){
 
 }
 
+/// finds path
 bool findApath(int i,int j){
 
-    if(i == n-1 && j == n-1){                  /// as it is guaranteed that bottom right has 1
+    if(i == n-1 && j == n-1){                  /// the destination
         cnt ++;
         sol[i][j] = 1;
         return true;
