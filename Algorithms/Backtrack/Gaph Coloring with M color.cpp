@@ -39,7 +39,8 @@ typedef double dd;
 #define     imax 2147483647
 #define     lmax 9223372036854775807LL
 
-/// given a Graph and m colour. Now check if the graph can be coloured with m(1 to m) colour. If can print one the painted version.
+/// given a Graph and m colour.
+/// Now check if the graph can be coloured with m(1 to m) colour with no two adjacent nodes coloured same. If can print one the painted version.
 /// funny fact graph with self-loop is never possible to colour under this constraint
 int Graph_Matrix[10][10],m,color[10],node;
 
