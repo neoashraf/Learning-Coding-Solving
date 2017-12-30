@@ -49,7 +49,7 @@ int getnodeColor(int k){
 
     int i;
 
-    while(1){                                       /// infinite loop
+    while(1){                                       /// infinite loop not a issue - in the calling function we return at k == node
         color[k] = (color[k]+1) % (m+1);            /// nice modular trick to increase the colour values 0 means colour finished
         if(color[k] == 0)                           /// returns false when as colour  not found
             return color[k];
@@ -63,6 +63,7 @@ int getnodeColor(int k){
 
 }
 
+/// sends the nodes to be coloured
 int mColoring(int k){
 
     if(k == node)                              /// base case - solution found
