@@ -47,15 +47,19 @@ int main() {
         read(d);
         read(n);
         mem(killed,0);
+        /// we try to fill the array killed( killing amount of each bombing location ) by taking a area of radius d around the mouse position
         fr(i,1,n){
-            read3(r,c,nRats);
+            read3(r,c,nRats);           /// rat position and amount input
+            /// creates the boundary of rectangular area for each mouse position
             topx = max(0,x-d), topy = max(0,y-d), bottomx = min(1024,x+d), bottomy = min(1024,y+d);
+            /// adds up the number of rats to all those position( bomb position ) which will cover this mouse location if a bomb is placed
             fr(x,topx,bottomx){
                 fr(y,bottomy,bottomy){
                     killed[x][y] += nRats;
                 }
             }
         }
+        /// get first the position with maximum kill
         ans = -1;
         fr(i,0,1024){
             fr(j,0,1024){
