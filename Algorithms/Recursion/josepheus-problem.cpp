@@ -1,3 +1,4 @@
+
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long ll;
@@ -50,27 +51,23 @@ Output: 369485271
 */
 
 vector<int>input;
-int jump,pos,n;
+int jump,n;
 /// prints the element by a jump of j and the taken one is removed
-int josepheus (){
+int josepheus (int pos){
 
     int i,l;
-    pos = 0;
-    l =input.size();
-    while(1){
-        /// all cleared
-        if(l == 0)
-            return 1;
-        /// when one item in pos i is deleted
-        /// the next items shifts left so the jump is made from pos i
-        pos += jump ;                         /// value increases by 3
-        pos = (pos % l)? (pos%l) : l;         /// if we get a remainder that is the pos or the last element(size)
-        pos--;                                /// adjust  the array index
-        pf("%d ",input[pos]);                 /// print the element
-        input.erase(input.begin()+ pos);      /// delete item --deletes the element in index pos (that is pos+1 th element)
-        l--;                                  /// size shrinks
-    }
-
+    /// all cleared
+    if(n == 0)
+        return 1;
+    /// when one item in pos i is deleted
+    /// the next items shifts left so the jump is made from pos i
+    pos += jump ;                         /// value increases by 3
+    pos = (pos % n) ? (pos % n) : n ;     /// if we get a remainder that is the pos or the last element(size)
+    pos--;                                /// adjust  the array index
+    pf("%d ",input[pos]);                 /// print the element
+    input.erase(input.begin()+ pos);      /// delete item --deletes the element in index pos (that is pos+1 th element)
+    n--;                                  /// size shrinks
+    josepheus(pos);                       /// recursive call
 }
 
 int main() {
@@ -81,7 +78,8 @@ int main() {
         read(x);
         input.PB(x);
     }
-    josepheus();
+    /// function call
+    josepheus(0);
 
     return 0;
 }
