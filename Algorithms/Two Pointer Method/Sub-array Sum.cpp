@@ -69,5 +69,7 @@ int main() {
         }
         p1++;
     }
+    if(p1 == n)                     /// if solution is found code will end in line (sum == x) at least at n-1
+        pf("No Solution\n");
     return 0;
 }
