@@ -39,22 +39,32 @@ typedef double dd;
 #define     imax 2147483647
 #define     lmax 9223372036854775807LL
 
-/// Given an Array -> input and a number x find a sub-array that's equals to x
+/// Given an Array -> input and a number x find a sub-array that's sum equals to x. One solution then break
+/// Solution Complexity - O(n)
 
 int main() {
+
     int n,input[1000],p1,p2,i,x,sum;
+
     /// input
     read2(n,x);
     nfr(i,0,n){
         read(input[i]);
     }
-    /// two pointer p1 and p2
-    /// p1 goes from 0 to n but p2 goes until sum <= x staring from 0. When solution is found code ends or No solution printed.
+
+    /// two pointer p1 and p2. p1 points to the first and p2 to the last element of the sub-array.
+    /// p1 makes one step to right at each turn and p2 towards right as long as sum <= x. -- it is the main theme.
+    /// My implementation
+    /// p1 and p2 starts at 0.
+    /// p2 goes on until sum <= x. If sum == x solution is printed.
+    /// When p2 fails to move, turn comes to p1. The first value of sub-array (input[p1]) is subtracted, p1 moves to right one step.
+
+    sum = 0;                    /// sum initialize
     p1 = 0;
+    p2 = 0;
     while(p1 < n){
-        p2 = p1;
-        sum = 0;                    /// sum initialize
-        while(sum <= x){
+
+        while(sum + input[p2]<= x ){
             sum += input[p2];
             if(sum == x){           /// solution print
                 fr(i,p1,p2){
@@ -63,13 +73,30 @@ int main() {
                 pf("\n");
                 return 0;
             }
-            else if(sum > x)        /// breaks as sum exceeds x
-                break;
             p2++;
         }
+
+        /// as p2 failed to move right
+        sum -= input[p1];    /// if p2 fails at 0 this operation will give some values to sum. This values will become neutral when p2 progresses
         p1++;
+
     }
+
     if(p1 == n)                     /// if solution is found code will end in line (sum == x) at least at n-1
         pf("No Solution\n");
+
     return 0;
 }
+
+/// Test Case --
+/*Input
+4 55
+100 100 1 54
+
+8 8
+1 3 2 5 1 1 2 3
+
+Output
+1 54
+2 5 1
+*/
