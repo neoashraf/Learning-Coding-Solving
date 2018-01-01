@@ -42,6 +42,9 @@ typedef double dd;
 /// Problem Statement : Given an array find the nearest smallest elements for each array value
 /// Solution Complexity : O(n)
 
+/// Two Pointer :
+/// One is the array iterator another is the stack pointer.
+
 int main() {
 
     int input[1000],p1,p2,n,x,i,sum;
