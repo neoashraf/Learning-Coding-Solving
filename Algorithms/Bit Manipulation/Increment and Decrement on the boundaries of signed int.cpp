@@ -66,6 +66,7 @@ int main() {
     cout << x << "\n";                  /// -2147483648
     x--;
     cout << x << "\n";                  /// 2147483647
+    /// the explanation:
     /// The reverse situation of the above one.
     /// -2147483648 (32-0) all bits are 1.
     /// As it decrements it goes to its previous value 2147483647 that has (32 bit-0)(31-0) are 1s. That is the last positive number. in the signed integer.
