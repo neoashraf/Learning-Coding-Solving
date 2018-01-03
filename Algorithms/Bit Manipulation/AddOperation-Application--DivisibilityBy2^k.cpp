@@ -42,10 +42,10 @@ typedef double dd;
 /// It checks if the input is power of 2.
 
 /// Explanation :
-/// A 2^k has a bit 1 is kth position rest (k-1 to 0) are zero. So 2^k -1 will have kth bit as 0 and (k-1 to 0) as 1.
+/// A 2^k has a 1 in kth position rest (k-1 to 0) are zero. So 2^k -1 will have kth bit as 0 and (k-1 to 0) as 1.
 /// Now the number x if it is no be divisible by 2^k it must be at least 2^k or other multiples.
 /// So this number will have 1 in positions >= k and and rest (k-1 to 0) are zero.
-/// The & operation yields to 0.
+/// The (x&2^k-1) operation yields to 0.
 
 /// Examples :
 /// 16 = 10000 & operation
@@ -57,12 +57,12 @@ typedef double dd;
 /// 0  = 00000
 
 int main() {
-    int x,divisor;
-    read(x,k);                              /// k to calculate the 2^k-1
-    divisor = (1<<k) - 1;
-    if( x & divisor == 0 )
-        cout<<x<<" is a power of 2."<<endl;
+    int x,divisor,k;
+    read2(x,k);                              /// k to calculate the 2^k-1
+    divisor = (1 << k) - 1;
+    if( (x & divisor) == 0 )
+        cout<<x<<" is divisible by 2^"<<k<<"."<<endl;
     else
-        cout<<"It's not."<<endl;
+        cout<<x<<" is not divisible by 2^"<<k<<"."<<endl;
     return 0;
 }

@@ -39,11 +39,11 @@ typedef double dd;
 #define     imax 2147483647
 #define     lmax 9223372036854775807LL
 
-/// It checks if the input is power of 2.
+/// It checks if the input is  a power of 2.
 
 /// Explanation :
-/// A 2^k has a bit 1 is kth position rest (k-1 to 0) are zero. So 2^k -1 will have kth bit as 0 and (k-1 to 0) as 1.
-/// The & operation yields to 0.
+/// A 2^k has a 1 in kth position rest (k-1 to 0) are zero. So 2^k - 1 will have kth bit as 0 and (k-1 to 0) as 1.
+/// The (x & x-1) operation yields to 0.
 
 /// Examples :
 /// 16 = 10000 & operation
@@ -51,10 +51,13 @@ typedef double dd;
 /// 0  = 00000
 
 int main() {
-    int x;
+    int x,po;
     read(x);
-    if( x & (x-1) == 0 )
-        cout<<x<<" is a power of 2."<<endl;
+    po = log2(x);
+    if( ( x & (x-1) )== 0 ){
+        cout<<"Yes."<<endl;
+        cout<<x<<" = 2^"<<po<<"."<<endl;
+    }
     else
         cout<<"It's not."<<endl;
     return 0;
