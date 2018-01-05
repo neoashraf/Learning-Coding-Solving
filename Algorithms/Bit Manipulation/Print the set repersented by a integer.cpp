@@ -39,14 +39,15 @@ typedef double dd;
 #define     imax 2147483647
 #define     lmax 9223372036854775807LL
 
-/// The following code declares an int variable x that can contain a subset of {0,1,2,...,31}
+/// The following code declares an integer variable x that can contain a subset of {0,1,2,...,31}
 /// it prints the position when that position has a 1
 
 int main() {
     int n,i;
     read(n);
-    cout<<__builtin_popcount(n)<<endl;
+    cout<<__builtin_popcount(n)<<endl;              /// count the number of 1 (number of elements in the set)
     for(i = 0;i < 32;i ++){
+        /// for every binary representation of b if a bit position is 1 the position is printed. This position are the elements of the subset
         if(n & (1<<i))
             cout<<i<<" ";
     }

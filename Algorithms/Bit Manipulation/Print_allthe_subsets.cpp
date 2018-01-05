@@ -183,15 +183,16 @@ bool cmp(st a,st b) {
         return a.a<b.a;
 }
 
-/// prints the subsets of elements(0,1,2,...n-1)
+/// prints the subsets of the set (0,1,2,...n-1)
 /// this code can accept n = 32 at best
 
 int main() {
     int n;
     read(n);
-    for (int b = 0; b < (1<<n); b++) {
+    for (int b = 0; b < (1<<n); b++) {              /// total subset possible 2^n - 1
     /// process subset of b
         for (int i = 0; i < 32; i++) {
+            /// for every binary representation of b if a bit position is 1 the position is printed. This position are the elements of the subset
             if (b&(1<<i)) cout << i << " ";
         }
             cout<<endl;
