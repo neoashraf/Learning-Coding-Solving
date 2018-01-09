@@ -39,15 +39,15 @@ typedef double dd;
 #define     imax 2147483647
 #define     lmax 9223372036854775807LL
 
-/// prints the subsets of the set (0,1,2,...n-1)
-/// this code can accept n = 32 at best
+/// prints the subsets of the set represented by integer x
 
 int main() {
-    int n;
-    read(n);
-    for (int b = 0; b < (1<<n); b++) {              /// total subset possible 2^n - 1
-    /// process subset of b
-        for (int i = 0; i < 32; i++) {
+    int x,b,i;
+    read(x);
+    b = 0;
+    while ((b=(b-x)&x)) {         /// produces all the numbers(0 to 2^n-1) that will produce the subsets. n is the number of bits in b
+    /// process subset b
+        for (i = 0; i < 32; i++) {
             /// for every binary representation of b if a bit position is 1 the position is printed. This position are the elements of the subset
             if (b&(1<<i)) cout << i << " ";
         }
