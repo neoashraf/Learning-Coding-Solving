@@ -1,3 +1,4 @@
+
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long ll;
@@ -42,18 +43,22 @@ typedef double dd;
 /// col tracks if any queen is placed in column x
 /// as diagonal is possible in two ways , two arrays is needed to mark them. Here they tracks if any queen is in the diagonal x
 
-int n,col[100],diag1[100],diag2[100],cnt = 1;
+int n,col[100],diag1[100],diag2[100],cnt=0;
 vector<int>QueenPos;                                    /// prints columns per row
+int board[15][15]={0};
 
 /// places the queen per row
 int placeNQueens(int y){
 
     int x,i;
-    if(y == n){                                         /// prints the solution
-        pf("Solution Number --> %d : ",cnt++);
-        nfr(i,0,n){
-            pf("%d%c",QueenPos[i],i == n-1 ? '\n' : ' ');
+    if(y == n){                                         /// solution found
+        ++cnt;                                          /// counts the solutions
+        if(cnt == 1){                                   /// places the queens in the board according to the first solution
+            nfr(i,0,n){
+                board[i] [QueenPos[i] ] = 1;
+            }
         }
+        return 0;
     }
     nfr(x,0,n){
         /// for each position in the grid there is three check
@@ -64,8 +69,7 @@ int placeNQueens(int y){
         col[x] = 1, diag1[x+y] = 1, diag2[x-y+n-1] = 1;
         QueenPos.PB(x);                                 /// push the result
         placeNQueens( y+1 );                            /// call for next row
-        /// we are backtracking here
-        /// clear the arrays and remove queens positions
+        /// calculation
         col[x] = 0, diag1[x+y] = 0, diag2[x-y+n-1] = 0;
         QueenPos.POB();
     }
@@ -74,9 +78,22 @@ int placeNQueens(int y){
 
 int main() {
 
+    int i,j;
     read(n);
-    mem(col,0) , mem(diag1,0) , mem(diag2,0);               /// clears initially
-    placeNQueens(0);                                        /// beginning of the action
+    if(n==2 || n==3)
+        pf("Not possible\n");
+    else{
+        mem(col,0) , mem(diag1,0) , mem(diag2,0);               /// clears initially
+        QueenPos.clear();
+        placeNQueens(0);                                        /// beginning of the action
+        fr(i,0,n-1){                                            /// prints the first solution in the board
+            fr(j,0,n-1){
+                pf("%d ",board[i][j]);
+            }
+            pf("\n");
+        }
+    }
+
     return 0;
 
 }
