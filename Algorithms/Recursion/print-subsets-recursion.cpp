@@ -58,6 +58,8 @@ int subset(int k){
 }
 
 int main() {
+    //freopen("output.txt","w",stdout);
+    //n = 19;
     read(n);
     subset(0);
     return 0;
