@@ -40,11 +40,12 @@ typedef double dd;
 #define     lmax 9223372036854775807LL
 
 /// It is the basic 0/1 knapsack problem
+/// Here we maximize the profit
 
-int n,cap;
+int n,dp[1005][100],cap;
 
 struct st{
-    int p,w;
+    int p,w,taken;
     st(int p,int w){
         this->p = p;
         this->w = w;
@@ -53,29 +54,42 @@ struct st{
 vector<st>objectDetails;
 
 int z_1_knapsack(int i,int w){
+
     int profit0 ,profit1;
-    if(i == n)
+    if(i == n)                          /// base case
         return 0;
-    profit0 = z_1_knapsack(i+1,w);
-    if(w + objectDetails[i].w <= cap)
-        profit1 = objectDetails[i].p + z_1_knapsack(i+1,w+objectDetails[i].w);
+
+    if(dp[i][w])                        /// Previously computed
+        return dp[i][w];
+
+    profit0 = z_1_knapsack(i+1,w);       /// Not taking this item and move to next item
+
+    if(w + objectDetails[i].w <= cap){   /// Taking if taken within capacity
+        profit1 = objectDetails[i].p + z_1_knapsack(i+1,w+objectDetails[i].w);              /// Price update and move to next item
+    }
     else
-        profit1 = 0;
-    return max(profit0,profit1);
+        profit1 = 0;                     /// as the item can con be taken so profit0 will be returned
+    return dp[i][w] = max(profit0,profit1);
+
 }
 
 int main() {
     int tc,i,x,y;
     read(tc);
     while(tc--){
-        read(n);
+        read(n);                /// total items
+
         objectDetails.clear();
+        mem(dp,0);
+
+        /// price and weight input
         fr(i,1,n){
             read2(x,y);
             objectDetails.PB(st(x,y));
         }
-        read(cap);
-        pf("%d\n",z_1_knapsack(0,0));
+
+        read(cap);                      /// sack capacity
+        pf("%d\n",z_1_knapsack(0,0));   /// function call starts with item 0 and weight 0 (as no item is taken yet)
     }
     return 0;
 }
